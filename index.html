@@ -20,7 +20,7 @@
             <h1 class="titre-principale">Activer un produit sur vapeur</h1>
 
             <div class="col-gauche">
-                <form id="form-activation">
+                <form id="form-activation" action="https://designweb-production.up.railway.app/examen2/revB" method="post" onsubmit="return validationFormulaire()">
 
                     <div id="message-erreur" class="hidden"></div>
 
@@ -33,7 +33,7 @@
                     </div>
                     
                     <input type='checkbox' id='declaration' name='declaration'>
-                    <label for='declaration' class="texte-darker label-declaration">
+                    <label for='declaration' class="texte-darker label-declaration" id="test">
                         J'accepte les termes de l'
                         <a href="#">Accord de souscripton Vapeur</a> 
                         (dernière modification à jour le 24 févr. 2022).

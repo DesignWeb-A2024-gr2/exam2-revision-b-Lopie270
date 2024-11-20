@@ -36,5 +36,47 @@ function isProduitExiste(codeProduit) {
 // Ajoutez votre code plus bas                                             =
 // =========================================================================
 
+//Validation que le code de produit est valide
+let inputActivation = document.getElementById("cle-activation");
+let monFormulaire = document.getElementById("form-activation");
+monFormulaire.addEventListener("submit", validationFormulaire);
+let messageErreur = document.getElementById("message-erreur");
 
+function validationFormulaire(e) {
+    e.preventDefault();
+
+    let formValid = false;
+
+    //Vérifie que la clé est valide et dans la liste de produit
+    let cle_valid = false;
+    if (inputActivation.value.match(REGEX_CODE_PRODUIT)) {
+        if (isProduitExiste(inputActivation.value)) {
+            cle_valid = true;
+            console.log("ça marche")
+        } else {
+            messageErreur.classList.remove("hidden");
+            messageErreur.innerText = erreurValidation["produitInexistant"];
+        }
+    } else {
+        messageErreur.classList.remove("hidden");
+        messageErreur.innerText = erreurValidation["formatInvalide"];
+    }
+
+    //Vérifie que la case des termes est coché
+    const terme = document.getElementById("declaration").checked;
+    let termeText = document.getElementById("test");
+
+    if (!terme) {
+        messageErreur.innerText = erreurValidation["terme"];
+        termeText.style.setProperty("color", "var(--couleur-texte-invalide)");
+    }
+
+    if (cle_valid && terme) {
+        formValid = true;
+    }
+
+    if (formValid) {
+        monFormulaire.submit();
+    }
+}
 
